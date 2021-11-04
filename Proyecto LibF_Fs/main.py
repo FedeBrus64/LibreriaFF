@@ -179,8 +179,8 @@ def contacto():
     if request.method == 'POST':
         descripcion_Consulta = request.form['comentarios']
         cur = mysql.connection.cursor()
-        cur.execute('INSERT INTO consulta (usuario_Consulta, descripcion_Consulta, fecha_Consulta) VALUES (fedeBruschi, %s, current_date())',
-        (descripcion_Consulta))
+        cur.execute('INSERT INTO consulta (descripcion_Consulta, usuario_Consulta, fecha_Consulta) VALUES (%s, "fedeBruschi", current_date())',
+        [descripcion_Consulta])
         mysql.connection.commit()
         return redirect(url_for('nexoPostconsulta')) 
     return render_template('contacto.html')
